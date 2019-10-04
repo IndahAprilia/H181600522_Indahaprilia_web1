@@ -38,21 +38,18 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    protected function validatelogin(Request $request)
+    protected function create(array $data)
     {
-        $request->validate([
-            $this->username() => 'required|string',
-            'password' => 'required|string' ,
-            'captcha' => 'required|captcha' ,
+        return User::create([
+            'name' => $data['name'],
+            'email'=> $data['mail'],
+            'contact'=> $data['contact'],
+            'password'=> Hash::make($data['password']),
         ]);
+        
     }
-    protected function credentials (Request $request)
-    {
-        return $request->only($this->username(), 'password');
-    }
-
-    public function username()
-    {
-        return 'contact' ;
-    }
+    public function refreshCaptcha()
+{
+    return captcha_img('flat');
+}
 }

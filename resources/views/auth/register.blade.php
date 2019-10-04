@@ -75,28 +75,16 @@
                             </div>
                         </div>
 
+
                         <div class="form-group row">
                             <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('captcha') }}</label>
 
                             <div class="col-md-6">
                                 <div class="captcha">
                                     <span>{!! captcha_img() !!}</span>
-                                    <button type="button" class="btn btn-success btn-refersh">Refersh</button>
+                                    <button type="button" class="btn btn-success btn-refersh"><a style="text decoration:none;color:white" href="{{route('register')}}">Refresh</a></button>
                             </div>
-                            <input type="text" id="captcha" class="form-control" placeholder="Enter Captcha" name="captcha">
-                            @if ($errors->has('captcha'))
-                                <span class="help-block">
-                                    <strong>{{$errors->first('captcha') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __(' ') }}</label> 
-
-                            <div class="col-md-6">
-                                <input id="captcha" type="text" class="form-control @error('captcha') is-invalid @enderror" name="captcha" value="" required>
+                                    <input id="captcha" type="captcha" class="form-control mt-2 @error('captcha') is-invalid @enderror" name="captcha" placeholder="Enter Captcha">
 
                                 @error('captcha')
                                     <span class="invalid-feedback" role="alert">
@@ -105,9 +93,8 @@
                                 @enderror
                             </div>
                         </div>
+
                         
-
-
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

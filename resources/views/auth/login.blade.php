@@ -53,34 +53,27 @@
                                 @enderror
                             </div>
                         </div>
-
-
+    
+                    
+                               
                         <div class="form-group row">
                             <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('captcha') }}</label>
 
                             <div class="col-md-6">
                                 <div class="captcha">
                                     <span>{!! captcha_img() !!}</span>
-                                    <button type="button" class="btn btn-success btn-refersh">Refersh</button>
-                            </div>
-                            <input type="text" id="captcha" class="form-control" placeholder="Enter Captcha" name="captcha">
-                            @if ($errors->has('captcha'))
-                                <span class="help-block">
-                                    <strong>{{$errors->first('captcha') }}</strong>
+                                    <button type="button" class="btn btn-success btn-refersh"><a style="text decoration:none;color:white" href="{{route('login')}}">Refresh</a></button>
+                        </div>
+                                    <input id="captcha" type="captcha" class="form-control mt-2 @error('captcha') is-invalid @enderror" name="captcha" placeholder="Enter Captcha">
+
+                                @error('captcha')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
                                     </span>
-                                @endif
+                                @enderror
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                            <div class="form-check">
-                                
-
-                                    <label class="form-check-label" for="remember">
-                                      
-                                    </label>
-                                </div>
+                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
