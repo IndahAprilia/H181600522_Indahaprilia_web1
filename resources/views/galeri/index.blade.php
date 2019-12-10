@@ -8,7 +8,8 @@
                 <div class="card-header">List Galeri</div>
 
                 <div class="card-body">
-                <table border="1">
+                <a href="{!! route('galeri.create') !!}" class="btn btn-primary">Tambah Data</a>
+                 <table Border="1">
         <tr>
             <td>ID</td>
             <td>Nama</td>
@@ -16,26 +17,40 @@
             <td>Path</td>
             <td>Users Id</td>
             <td>Create</td>
+            <td>update</td>
             <td>Kategori Galeri Id</td>
+            <td>Aksi</div>
         </tr>
-
-        @foreach($listGaleri as $item)
-
+                
+            @foreach($listGaleri as $item)  
         <tr>
             <td>{!! $item->id !!}</td>
             <td>{!! $item->nama !!}</td>
             <td>{!! $item->keterangan !!}</td>
-            <td>{!! $item->path !!}</td>
+            <td><img src="{!! asset($item->path) !!}" width="60px"></td>
             <td>{!! $item->users_id !!}</td>
-            <td>{!! $item->created_at->format('d/m/y H:i:s') !!}</td>
+            <td>{!! $item->created_at->format('d/m/Y H:i:s') !!}</td>
+            <td>{!! $item->updated_at->format('d/m/Y H:i:s') !!}</td>
             <td>{!! $item->kategori_galeri_id !!}</td>
-        </tr>
-        @endforeach    
-        </table>    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+            <td>
+               <a href ="{!! route('galeri.show',[$item->id]) !!}" class="btn btn-sm btn-success">Lihat</a>
 
+               <a href ="{!! route('galeri.edit',[$item->id]) !!}" class="btn btn-sm btn-warning">Ubah</a>
+          
+               {!! Form ::open(['route' => ['galeri.destroy',$item->id],'method'=>'delete']) !!}
+       
+       {!! Form::submit('Hapus',['class'=>'btn btn-sm btn-danger','onclick' =>"return confirm('Apakah anda yakin menghapus data ini')"]); !!}
+
+        {!! Form::close() !!}
+
+          
+            </td>   
+        </tr>
+ @endforeach
+    </table>
+                  </div>
+             </div>
+         </div>
+     </div>
+ </div>
 @endsection

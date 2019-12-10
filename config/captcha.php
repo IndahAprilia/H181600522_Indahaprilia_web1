@@ -10,7 +10,7 @@ return [
         'math' => false,
     ],
     'math' => [
-        'length' => 5,
+        'length' => 9,
         'width' => 120,
         'height' => 36,
         'quality' => 90,
@@ -18,11 +18,11 @@ return [
     ],
 
     'flat' => [
-        'length' => 4,
-        'width' => 110,
-        'height' => 30,
+        'length' => 6,
+        'width' => 160,
+        'height' => 46,
         'quality' => 90,
-        'lines' => 4,
+        'lines' => 6,
         'bgImage' => false,
         'bgColor' => '#ecf2f4',
         'fontColors' => ['#2c3e50', '#c0392b', '#16a085', '#c0392b', '#8e44ad', '#303f9f', '#f57c00', '#795548'],

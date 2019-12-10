@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKategori extends Migration
+class CreateKategoriTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,10 @@ class CreateKategori extends Migration
     {
         Schema::create('kategori', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama');
-            $table->string('keterangan');
-            $table->unsignedBigInteger('user_id');
+            $table->integer('user_id');
+            $table->string('name');
+            $table->text('keterangan');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

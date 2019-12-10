@@ -25,6 +25,8 @@
                             </div>
                         </div>
 
+                       
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -39,11 +41,11 @@
                             </div>
                         </div>
 
-                       <div class="form-group row">
-                            <label for="contact" class="col-md-4 col-form-label text-md-right">{{ __('contact') }}</label>
+                        <div class="form-group row">
+                            <label for="contact" class="col-md-4 col-form-label text-md-right">{{ __('Contact') }}</label>
 
                             <div class="col-md-6">
-                                <input id="contact" type="contact" class="form-control @error('contact') is-invalid @enderror" name="contact" value="{{ old('contact') }}" required autocomplete="contact">
+                                <input id="contact" type="contact" class="form-control @error('contact') is-invalid @enderror" name="contact" value="{{ old('contact') }}" required autocomplete="contact" autofocus>
 
                                 @error('contact')
                                     <span class="invalid-feedback" role="alert">
@@ -52,6 +54,7 @@
                                 @enderror
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -67,6 +70,7 @@
                             </div>
                         </div>
 
+                        
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
@@ -75,16 +79,25 @@
                             </div>
                         </div>
 
+                    
 
+                         
                         <div class="form-group row">
-                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('captcha') }}</label>
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('Captcha') }}</label>
 
                             <div class="col-md-6">
-                                <div class="captcha">
-                                    <span>{!! captcha_img() !!}</span>
-                                    <button type="button" class="btn btn-success btn-refersh"><a style="text decoration:none;color:white" href="{{route('register')}}">Refresh</a></button>
+                               <div class="hasil_refreshcapcha">
+                                {!! captcha_img() !!}
+                                </div>
+                                <br>
+                                <a href="javascript:void(0)" onclick="refreshcapcha()">Refresh</a>
                             </div>
-                                    <input id="captcha" type="captcha" class="form-control mt-2 @error('captcha') is-invalid @enderror" name="captcha" placeholder="Enter Captcha">
+                        </div>   
+                        <div class="form-group row">
+                            <label for="captcha" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Captcha') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="captcha" type="text" class="form-control @error('captcha') is-invalid @enderror" name="captcha" required>
 
                                 @error('captcha')
                                     <span class="invalid-feedback" role="alert">
@@ -93,8 +106,8 @@
                                 @enderror
                             </div>
                         </div>
+                
 
-                        
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -105,4 +118,28 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
 
+
+@section('scripts')
+<script>
+function refreshcapcha(){
+   $.ajax({
+    url: "/refreshcapcha",
+   type: 'get',
+  dataType: 'html',        
+  success: function(json) {
+    $('.hasil_refreshcapcha').html(json);
+  },
+  error: function(data) {
+    alert('Try Again.');
+  }
+});
+}
+</script>                
+
+@endsection
